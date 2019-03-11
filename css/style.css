@@ -1,3 +1,10 @@
+.profile-btn {
+  margin-top: 20px;
+}
+.profile-btn > i {
+  margin-left: -10px!important;
+  margin-right: 10px;
+}
 /*
   Style.css file
   Comet Template
