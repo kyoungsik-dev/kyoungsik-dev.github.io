@@ -1,5 +1,6 @@
 <html>
 	<head>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no maximum-scale=1, user-scalable=no">
 	</head>
 	<body style="margin: 0;">
@@ -82,11 +83,11 @@
 		document.getElementById('tabBtn2').addEventListener('click', ()=>showFrame(2));
 		document.getElementById('tabBtn3').addEventListener('click', ()=>showFrame(3));
 
-		urlInput.onpaste = function(event) {
-			let url = event.clipboardData.getData('text/plain');
-			document.getElementById(`tabFrame${currentTab}`).src = url;
-			showFrame(currentTab);
-			tabUrl[currentTab] = url;
-		}
+		// urlInput.onpaste = function(event) {
+		// 	let url = event.clipboardData.getData('text/plain');
+		// 	document.getElementById(`tabFrame${currentTab}`).src = url;
+		// 	showFrame(currentTab);
+		// 	tabUrl[currentTab] = url;
+		// }
 	</script>
 </html>
