@@ -9,7 +9,12 @@
 			<button class="btn" id="tabBtn2">탭2</button>
 			<button class="btn" id="tabBtn3" style="margin-right: 0;">탭3</button>
 		</div>
-		<div class="btn" id='urlInput' contenteditable='true' style="display: none;">URL 붙여넣기</div>
+		<div id="urlInputWrapper" style="display: none;">
+			<input type="text" class="btn" id='urlInput'>
+			<span style="position: relative;">
+				URL 붙여넣기
+			</span>
+		</div>
 
 		<iframe id="tabFrame0" src="https://center-pf.kakao.com/_sRHxaj/chats" width="100%" height="100%" style="border: 0;"></iframe>
 		<iframe id="tabFrame1" width="100%" height="100%" style="border: 0; display: none;"></iframe>
@@ -17,13 +22,17 @@
 		<iframe id="tabFrame3" width="100%" height="100%" style="border: 0; display: none;"></iframe>
 	</body>
 	<style>
-		#urlInput {
+		#urlInputWrapper {
+			position: absolute;
 			top: 42px;
-			position: fixed;
+		}
+		#urlInput {
+			position: relative;
+    	width: 150px;
 			left: 120px;
 			border: 0;
 			background-color: transparent;
-			color: #000;
+			color: transparent;
 		}
 		.btnSelected {
 			background-color: #007bff !important;
@@ -55,22 +64,8 @@
 	</style>
 	<script>
 		let currentTab = 0;
-		function handlePaste (e) {
-			var clipboardData, pastedData;
-			// Stop data actually being pasted into div
-			e.stopPropagation();
-			e.preventDefault();
-
-			// Get pasted data via clipboard API
-			clipboardData = e.clipboardData || window.clipboardData;
-			pastedData = clipboardData.getData('Text');
-			
-			// Do whatever with pasteddata	
-			document.getElementById(`tabFrame${currentTab}`).src = pastedData;
-			showFrame(currentTab);
-		}
 		function showFrame(index) {
-			document.getElementById('urlInput').style.display = index ? 'block' : 'none';
+			document.getElementById('urlInputWrapper').style.display = index ? 'block' : 'none';
 			currentTab = index;
 			for (let i=0; i<4; i++) {
 				document.getElementById(`tabFrame${i}`).style.display = (i==index) ? 'block' : 'none';
@@ -84,6 +79,11 @@
 		document.getElementById('tabBtn2').addEventListener('click', ()=>showFrame(2));
 		document.getElementById('tabBtn3').addEventListener('click', ()=>showFrame(3));
 
-		document.getElementById('urlInput').addEventListener('paste', handlePaste);
+		urlInput.onpaste = function(event) {
+			let url = event.clipboardData.getData('text/plain');
+			document.getElementById(`tabFrame${currentTab}`).src = url;
+			showFrame(currentTab);
+			document.getElementById('urlInput').value = '';
+		}
 	</script>
 </html>
