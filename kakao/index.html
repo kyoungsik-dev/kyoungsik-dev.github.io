@@ -10,10 +10,10 @@
 			<button class="btn" id="tabBtn3" style="margin-right: 0;">탭3</button>
 		</div>
 		<div id="urlInputWrapper" style="display: none;">
+			<div id="urlText">
+				URL
+			</div>
 			<input type="text" class="btn" id='urlInput'>
-			<span style="position: relative;">
-				URL 붙여넣기
-			</span>
 		</div>
 
 		<iframe id="tabFrame0" src="https://center-pf.kakao.com/_sRHxaj/chats" width="100%" height="100%" style="border: 0;"></iframe>
@@ -22,17 +22,19 @@
 		<iframe id="tabFrame3" width="100%" height="100%" style="border: 0; display: none;"></iframe>
 	</body>
 	<style>
+		#urlText {
+			padding: 6px;
+    	border-right: 1px solid #ccc;
+		}
 		#urlInputWrapper {
-			position: absolute;
-			top: 42px;
+			display: flex;
+    	border-bottom: 1px solid #ccc;
 		}
 		#urlInput {
-			position: relative;
-    	width: 150px;
-			left: 120px;
 			border: 0;
 			background-color: transparent;
-			color: transparent;
+			color: #000;
+    	font-size: 12px;
 		}
 		.btnSelected {
 			background-color: #007bff !important;
@@ -64,14 +66,15 @@
 	</style>
 	<script>
 		let currentTab = 0;
+		let tabUrl = [];
 		function showFrame(index) {
-			document.getElementById('urlInputWrapper').style.display = index ? 'block' : 'none';
+			document.getElementById('urlInputWrapper').style.display = index ? 'flex' : 'none';
 			currentTab = index;
 			for (let i=0; i<4; i++) {
 				document.getElementById(`tabFrame${i}`).style.display = (i==index) ? 'block' : 'none';
 				if (i==index) document.getElementById(`tabBtn${i}`).classList.add('btnSelected');
 				else document.getElementById(`tabBtn${i}`).classList.remove('btnSelected');
-				
+				document.getElementById('urlInput').value = tabUrl[index] ? tabUrl[index] : '';
 			}
 		}
 		document.getElementById('tabBtn0').addEventListener('click', ()=>showFrame(0));
@@ -83,7 +86,7 @@
 			let url = event.clipboardData.getData('text/plain');
 			document.getElementById(`tabFrame${currentTab}`).src = url;
 			showFrame(currentTab);
-			document.getElementById('urlInput').value = '';
+			tabUrl[currentTab] = url;
 		}
 	</script>
 </html>
