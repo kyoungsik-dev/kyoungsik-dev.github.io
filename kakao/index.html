@@ -23,6 +23,9 @@
 		<iframe id="tabFrame3" width="100%" height="100%" style="border: 0; display: none;"></iframe>
 	</body>
 	<style>
+		body {
+			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+		}
 		#urlText {
 			padding: 6px;
     	border-right: 1px solid #ccc;
@@ -45,12 +48,7 @@
 			display: inline-block;
 			font-weight: 400;
 			color: #212529;
-			text-align: center;
 			vertical-align: middle;
-			-webkit-user-select: none;
-			-moz-user-select: none;
-			-ms-user-select: none;
-			user-select: none;
 			background-color: transparent;
 			border: 1px solid transparent;
 			padding: .375rem .75rem;
@@ -83,11 +81,11 @@
 		document.getElementById('tabBtn2').addEventListener('click', ()=>showFrame(2));
 		document.getElementById('tabBtn3').addEventListener('click', ()=>showFrame(3));
 
-		// urlInput.onpaste = function(event) {
-		// 	let url = event.clipboardData.getData('text/plain');
-		// 	document.getElementById(`tabFrame${currentTab}`).src = url;
-		// 	showFrame(currentTab);
-		// 	tabUrl[currentTab] = url;
-		// }
+		urlInput.onpaste = function(event) {
+			let url = event.clipboardData.getData('text/plain');
+			document.getElementById(`tabFrame${currentTab}`).src = url;
+			showFrame(currentTab);
+			tabUrl[currentTab] = url;
+		}
 	</script>
 </html>
