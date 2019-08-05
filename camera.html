@@ -10,6 +10,8 @@
         }
         video {
             position: absolute;
+            width: 337px;
+            height: 602px;
         }
     </style>
 </head>
@@ -20,10 +22,7 @@
 
         var constraints = {
             audio: false,
-            video: {
-                width: 833,
-                height: 414
-            }
+            video: true
         }
 
         navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
