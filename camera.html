@@ -11,7 +11,7 @@
         video {
             position: absolute;
             width: 414px;
-            height: 719px;
+            height: 896px;
         }
     </style>
 </head>
@@ -22,7 +22,7 @@
 
         var constraints = {
             audio: false,
-            video: {facingMode: 'user', height: 414, width: 719}
+            video: {facingMode: 'user'}
         }
 
         navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
