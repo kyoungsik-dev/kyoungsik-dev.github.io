@@ -22,7 +22,7 @@
 
         var constraints = {
             audio: false,
-            video: {facingMode: 'user'}
+            video: {facingMode: 'user', height: 414, width: 896}
         }
 
         navigator.mediaDevices.getUserMedia(constraints).then(function success(stream) {
